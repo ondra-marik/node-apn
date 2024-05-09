@@ -832,28 +832,28 @@ describe('Notification', function () {
       });
     });
 
-    describe('events', function () {
+    describe('event', function () {
       it('defaults to undefined', function () {
-        expect(compiledOutput()).to.not.have.nested.property('aps.events');
+        expect(compiledOutput()).to.not.have.nested.property('aps.event');
       });
 
       it('can be set to a string', function () {
-        note.events = 'the-event';
+        note.event = 'the-event';
 
-        expect(compiledOutput()).to.have.nested.property('aps.events', 'the-event');
+        expect(compiledOutput()).to.have.nested.property('aps.event', 'the-event');
       });
 
       it('can be set to undefined', function () {
-        note.events = 'the-event';
-        note.events = undefined;
+        note.event = 'the-event';
+        note.event = undefined;
 
-        expect(compiledOutput()).to.not.have.nested.property('aps.events');
+        expect(compiledOutput()).to.not.have.nested.property('aps.event');
       });
 
-      describe('setEvents', function () {
+      describe('setEvent', function () {
         it('is chainable', function () {
-          expect(note.setEvents('the-event')).to.equal(note);
-          expect(compiledOutput()).to.have.nested.property('aps.events', 'the-event');
+          expect(note.setEvent('the-event')).to.equal(note);
+          expect(compiledOutput()).to.have.nested.property('aps.event', 'the-event');
         });
       });
     });
@@ -932,6 +932,32 @@ describe('Notification', function () {
         it('is chainable', function () {
           expect(note.setStaleDate(1234)).to.equal(note);
           expect(compiledOutput()).to.have.nested.property('aps.stale-date', 1234);
+        });
+      });
+    });
+
+    describe('dismissalDate', function () {
+      it('defaults to undefined', function () {
+        expect(compiledOutput()).to.not.have.nested.property('aps.dismissal-date');
+      });
+
+      it('can be set to a number', function () {
+        note.dismissalDate = '123456';
+
+        expect(compiledOutput()).to.have.nested.property('aps.dismissal-date', 123456);
+      });
+
+      it('can be set to undefined', function () {
+        note.dismissalDate = '123456';
+        note.dismissalDate = undefined;
+
+        expect(compiledOutput()).to.not.have.nested.property('aps.dismissal-date');
+      });
+
+      describe('setDismissalDate', function () {
+        it('is chainable', function () {
+          expect(note.setDismissalDate(123456)).to.equal(note);
+          expect(compiledOutput()).to.have.nested.property('aps.dismissal-date', 123456);
         });
       });
     });
